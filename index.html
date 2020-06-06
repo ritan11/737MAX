@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+  <head>
+    <title>RAM Cloud</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+  </head>
+
+  <body>
+    <header id="header2">
+      <h1>737 MAX</h1>
+      <p id="slogan">X-Plane 11</p>
+      <button id="zButton" onclick="zeigen()">Back</button>
+    </header>
+
+    <header id="header1">
+      <h1>737 MAX</h1>
+      <p id="slogan">X-Plane 11</p>
+      <button id="infoButton" onclick="zeigen()">Show More</button>
+    </header>
+
+
+    <div id="platzhalter"></div>
+
+    <article>
+
+      <article>
+
+      <section>
+        <h2>737 MAX 7,8,9 and 10 for X-Plane 11</h2>
+
+
+            <li>
+              <a href="https://drive.google.com/drive/folders/1mogbaTyw2dqCeW4WdbUqmKwy1b8N_-cT?usp=sharing" input type="button" target="_blank" value="Download" </a>
+                  <input type="button" a href="https://drive.google.com/drive/folders/1mogbaTyw2dqCeW4WdbUqmKwy1b8N_-cT?usp=sharing" target="_blank" value="Download" </a>
+          </li>
+
+
+      </section>
+    </article>
+
+
+    <div id="popup">
+      <h2 id="popupUs">PLEASE WAIT</h2>
+      <div id="progContainer">
+        <div id="progBar">
+          <p id="progText">0mb</p>
+        </div>
+      </div>
+      <button id="popupButton" onclick="pZeigen(0)">OK</button>
+    </div>
+
+    <div id="overlay"></div>
+
+<script>
+
+var fertig;
+var i;
+var max;
+var zufallszahl;
+
+window.onload = function() {
+    $("article").hide();
+    $("#header2").hide();
+    $("#popup").hide();
+    $("#overlay").hide();
+};
+
+function zeigen() {
+    $("article").fadeToggle(200);
+    $("header").fadeToggle(200);
+}
+
+function pZeigen(menge) {
+    fertig = 0;
+    max = menge;
+    clearInterval(i);
+    $("#popupUs").text("PLEASE WAIT ");
+    $("#popup").fadeToggle(200);
+    $("#overlay").fadeToggle(200);
+
+    $("#progBar").attr("width", "0");
+    $("#progText").text(fertig + "mb");
+
+    i = setInterval(downloaden, 10);
+}
+
+function downloaden() {
+    zufallszahl = Math.floor(Math.random()*5);
+
+    if (fertig >= max) {
+        clearInterval(i);
+        $("#popupUs").text("PLEASE WAIT");
+        $("#progText").text(max + "mb");
+    }
+    else {
+        $("#progBar").css("width", (fertig/max)*100 + "%");
+        $("#progText").text(fertig + "mb");
+        fertig = fertig + zufallszahl;
+    }
+}
+
+</script>
+
+  </body>
+
+
+</html>
